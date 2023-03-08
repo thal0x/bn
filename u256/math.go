@@ -21,3 +21,27 @@ func DivDown(x, y *uint256.Int) *uint256.Int {
 func DivUp(x, y *uint256.Int) *uint256.Int {
 	return Add(ONE, DivDown(Sub(x, ONE), y))
 }
+
+func Rsh(x *uint256.Int, n uint) *uint256.Int {
+	return new(uint256.Int).Rsh(x, n)
+}
+
+func Lsh(x *uint256.Int, n uint) *uint256.Int {
+	return new(uint256.Int).Lsh(x, n)
+}
+
+func And(x, y *uint256.Int) *uint256.Int {
+	return new(uint256.Int).And(x, y)
+}
+
+func Or(x, y *uint256.Int) *uint256.Int {
+	return new(uint256.Int).Or(x, y)
+}
+
+func Xor(x, y *uint256.Int) *uint256.Int {
+	return new(uint256.Int).Xor(x, y)
+}
+
+func Not(x *uint256.Int) *uint256.Int {
+	return new(uint256.Int).Not(x)
+}
