@@ -24,6 +24,10 @@ func FromBytes(b []byte) *big.Int {
 	return big.NewInt(0).SetBytes(b)
 }
 
+func Neg(x *big.Int) *big.Int {
+	return new(big.Int).Neg(x)
+}
+
 func Rsh(x *big.Int, n uint) *big.Int {
 	return new(big.Int).Rsh(x, n)
 }
