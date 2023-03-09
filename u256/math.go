@@ -22,6 +22,10 @@ func DivUp(x, y *uint256.Int) *uint256.Int {
 	return Add(ONE, DivDown(Sub(x, ONE), y))
 }
 
+func Mod(x, y *uint256.Int) *uint256.Int {
+	return new(uint256.Int).Mod(x, y)
+}
+
 func Rsh(x *uint256.Int, n uint) *uint256.Int {
 	return new(uint256.Int).Rsh(x, n)
 }

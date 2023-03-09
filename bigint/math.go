@@ -21,3 +21,7 @@ func DivDown(x, y *big.Int) *big.Int {
 func DivUp(x, y *big.Int) *big.Int {
 	return Add(ONE, DivDown(Sub(x, ONE), y))
 }
+
+func Mod(x, y *big.Int) *big.Int {
+	return big.NewInt(0).Mod(x, y)
+}
