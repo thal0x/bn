@@ -26,6 +26,26 @@ func Mod(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Mod(x, y)
 }
 
+func MulMod(x, y, m *uint256.Int) *uint256.Int {
+	return new(uint256.Int).MulMod(x, y, m)
+}
+
+func MulDiv(a, b, denominator *uint256.Int) *uint256.Int {
+	result, _ := new(uint256.Int).MulDivOverflow(a, b, denominator)
+
+	return result
+}
+
+func MulDivRoundingUp(a, b, denominator *uint256.Int) *uint256.Int {
+	result := MulDiv(a, b, denominator)
+
+	if IsGreaterThan(MulMod(a, b, denominator), ZERO) {
+		result = Add(result, ONE)
+	}
+
+	return result
+}
+
 func Rsh(x *uint256.Int, n uint) *uint256.Int {
 	return new(uint256.Int).Rsh(x, n)
 }
