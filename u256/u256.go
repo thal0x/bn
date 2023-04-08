@@ -1,6 +1,7 @@
 package u256
 
 import (
+	"math"
 	"math/big"
 
 	"github.com/holiman/uint256"
@@ -9,6 +10,8 @@ import (
 var (
 	ZERO = New(0)
 	ONE  = New(1)
+
+	ONE_18 = FromString("1000000000000000000")
 )
 
 func New(x uint64) *uint256.Int {
@@ -27,4 +30,18 @@ func FromString(s string) *uint256.Int {
 
 func FromBytes(b []byte) *uint256.Int {
 	return new(uint256.Int).SetBytes(b)
+}
+
+func ScaleUp(x *uint256.Int, decimals uint8) *uint256.Int {
+	diff := 18 - decimals
+	scalingFactor := Mul(ONE_18, New(uint64(math.Pow(10, float64(diff)))))
+
+	return FixedMulDown(x, scalingFactor)
+}
+
+func ScaleDown(x *uint256.Int, decimals uint8) *uint256.Int {
+	decimalDiff := 18 - decimals
+	scalingFactor := Mul(ONE_18, New(uint64(math.Pow(10, float64(decimalDiff)))))
+
+	return FixedDivDown(x, scalingFactor)
 }
