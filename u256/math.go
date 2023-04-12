@@ -14,6 +14,14 @@ func Mul(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Mul(x, y)
 }
 
+func Div(x, y *uint256.Int, roundUp bool) *uint256.Int {
+	if roundUp {
+		return DivUp(x, y)
+	}
+
+	return DivDown(x, y)
+}
+
 func DivDown(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Div(x, y)
 }
