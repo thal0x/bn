@@ -16,12 +16,12 @@ func New(x int64) *big.Int {
 }
 
 func FromString(s string) *big.Int {
-	x, _ := big.NewInt(0).SetString(s, 0)
+	x, _ := new(big.Int).SetString(s, 0)
 	return x
 }
 
 func FromBytes(b []byte) *big.Int {
-	return big.NewInt(0).SetBytes(b)
+	return new(big.Int).SetBytes(b)
 }
 
 func Neg(x *big.Int) *big.Int {

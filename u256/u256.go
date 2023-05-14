@@ -24,7 +24,7 @@ func FromBig(x *big.Int) *uint256.Int {
 }
 
 func FromString(s string) *uint256.Int {
-	x, _ := big.NewInt(0).SetString(s, 0)
+	x, _ := new(big.Int).SetString(s, 0)
 	return FromBig(x)
 }
 
