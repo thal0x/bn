@@ -1,17 +1,48 @@
 package u256
 
-import "github.com/holiman/uint256"
+import (
+	"errors"
+
+	"github.com/holiman/uint256"
+)
 
 func Add(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Add(x, y)
+}
+
+func SafeAdd(x, y *uint256.Int) (*uint256.Int, error) {
+	result, overflow := new(uint256.Int).AddOverflow(x, y)
+	if overflow {
+		return nil, errors.New("SafeAdd: overflow")
+	}
+
+	return result, nil
 }
 
 func Sub(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Sub(x, y)
 }
 
+func SafeSub(x, y *uint256.Int) (*uint256.Int, error) {
+	result, overflow := new(uint256.Int).SubOverflow(x, y)
+	if overflow {
+		return nil, errors.New("SafeSub: overflow")
+	}
+
+	return result, nil
+}
+
 func Mul(x, y *uint256.Int) *uint256.Int {
 	return new(uint256.Int).Mul(x, y)
+}
+
+func SafeMul(x, y *uint256.Int) (*uint256.Int, error) {
+	result, overflow := new(uint256.Int).MulOverflow(x, y)
+	if overflow {
+		return nil, errors.New("SafeMul: overflow")
+	}
+
+	return result, nil
 }
 
 func Div(x, y *uint256.Int, roundUp bool) *uint256.Int {
